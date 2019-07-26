@@ -1,0 +1,30 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"lib": [
+			"dom",
+			"esnext"
+		],
+		"declaration": true,
+		"jsx": "react-native",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"removeComments": true,
+		"resolveJsonModule": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true,
+		"outDir": "../app",
+		"target": "es6"
+	},
+	"exclude": [
+		"../node_modules",
+		"../test"
+	],
+	"include": [
+		"../src/**/*"
+	]
+}

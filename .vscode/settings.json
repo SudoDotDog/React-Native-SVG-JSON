@@ -1,0 +1,20 @@
+{
+    "cSpell.words": [
+        "Appro",
+        "Firstname",
+        "Lastname",
+        "RMRF",
+        "RPNGO",
+        "WMXPY",
+        "bwnl",
+        "codecov",
+        "esnext",
+        "pano",
+        "splited",
+        "sudoo",
+        "triforce",
+        "tshook"
+    ],
+    "tslint.configFile": "typescript/tslint.json",
+    "files.eol": "\n"
+}
