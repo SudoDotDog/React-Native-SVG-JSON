@@ -16,12 +16,14 @@ export type JsonStructure = {
     readonly children: Array<string | JsonStructure>;
 };
 
-export type ImageTileProps = {
+export type SvgJsonProps = {
 
     readonly json: JsonStructure;
+    readonly height: number;
+    readonly width: number;
 };
 
-export class JsonBuilder extends React.PureComponent<ImageTileProps> {
+export class SvgJson extends React.PureComponent<SvgJsonProps> {
 
     public render() {
 
@@ -31,7 +33,12 @@ export class JsonBuilder extends React.PureComponent<ImageTileProps> {
         switch (current.tag) {
 
             case 'svg':
-                return (<Svg {...current.attributes as any} height={70} width={70}>{children}</Svg>);
+                return (<Svg
+                    {...current.attributes as any}
+                    height={this.props.height}
+                    width={this.props.width}>
+                    {children}
+                </Svg>);
             case 'polygon':
                 return (<Polygon {...current.attributes as any}>{children}</Polygon>);
             case 'text':
@@ -53,7 +60,12 @@ export class JsonBuilder extends React.PureComponent<ImageTileProps> {
         if (typeof value === 'string') {
             return value;
         } else {
-            return <JsonBuilder key={index} json={value} />;
+            return <SvgJson
+                height={this.props.height}
+                width={this.props.width}
+                key={index}
+                json={value}
+            />;
         }
     }
 }
