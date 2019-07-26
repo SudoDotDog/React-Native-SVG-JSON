@@ -1,10 +1,10 @@
 /**
  * @author WMXPY
- * @namespace SVG
+ * @namespace Svg
  * @description Svg
  */
 
-import React from 'react';
+import * as React from 'react';
 import Svg, { Circle, ClipPath, Defs, G, Polygon, Text } from 'react-native-svg';
 
 export type Tag = "svg" | "polygon" | "text" | "g" | "defs" | "clipPath" | "circle";
@@ -16,31 +16,34 @@ export type JsonStructure = {
     readonly children: Array<string | JsonStructure>;
 };
 
-export type SvgJsonProps = {
+export type ImageTileProps = {
 
     readonly json: JsonStructure;
 };
 
-export class SvgJson extends React.PureComponent<SvgJsonProps> {
+export class JsonBuilder extends React.PureComponent<ImageTileProps> {
 
     public render() {
 
         const current: JsonStructure = this.props.json;
+        const children = current.children.map(this._renderChildren);
+
         switch (current.tag) {
+
             case 'svg':
-                return (<Svg {...current.attributes as any} height={70} width={70}>{current.children.map(this._renderChildren)}</Svg>);
+                return (<Svg {...current.attributes as any} height={70} width={70}>{children}</Svg>);
             case 'polygon':
-                return (<Polygon {...current.attributes as any}></Polygon>);
+                return (<Polygon {...current.attributes as any}>{children}</Polygon>);
             case 'text':
-                return (<Text {...current.attributes as any}>{current.children.map(this._renderChildren)}</Text>);
+                return (<Text {...current.attributes as any}>{children}</Text>);
             case 'g':
-                return (<G {...current.attributes as any}>{current.children.map(this._renderChildren)}</G>);
+                return (<G {...current.attributes as any}>{children}</G>);
             case 'defs':
-                return (<Defs {...current.attributes as any}>{current.children.map(this._renderChildren)}</Defs>);
+                return (<Defs {...current.attributes as any}>{children}</Defs>);
             case 'clipPath':
-                return (<ClipPath {...current.attributes as any}>{current.children.map(this._renderChildren)}</ClipPath>);
+                return (<ClipPath {...current.attributes as any}>{children}</ClipPath>);
             case 'circle':
-                return (<Circle {...current.attributes as any}>{current.children.map(this._renderChildren)}</Circle>);
+                return (<Circle {...current.attributes as any}>{children}</Circle>);
         }
         return null;
     }
@@ -50,7 +53,7 @@ export class SvgJson extends React.PureComponent<SvgJsonProps> {
         if (typeof value === 'string') {
             return value;
         } else {
-            return <SvgJson key={index} json={value} />;
+            return <JsonBuilder key={index} json={value} />;
         }
     }
 }
