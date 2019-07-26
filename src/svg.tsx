@@ -28,7 +28,7 @@ export class SvgJson extends React.PureComponent<SvgJsonProps> {
     public render() {
 
         const current: JsonStructure = this.props.json;
-        const children = current.children.map(this._renderChildren);
+        const children = current.children.map((value: string | JsonStructure, index: number) => this._renderChildren(value, index));
 
         switch (current.tag) {
 
