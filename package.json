@@ -27,5 +27,8 @@
     "@types/react-native": "^0.57.63",
     "react": "^16.8.6",
     "react-native": "^0.59.9"
+  },
+  "dependencies": {
+    "react-native-svg": "^9.5.3"
   }
 }

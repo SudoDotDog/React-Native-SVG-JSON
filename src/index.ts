@@ -1,9 +1,8 @@
 /**
  * @author WMXPY
- * @namespace Loading
+ * @namespace Svg
  * @description Index
  */
 
-export * from "./loading";
-export * from "./view";
+export * from "./svg";
 
